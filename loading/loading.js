@@ -1,33 +1,77 @@
+
+const loadingType = {
+    circle:'circle',
+    landscapeBubble:'landscapeBubble'
+}
 class loading {
-    constructor(name=Math.random(),size = {width:15,height:15,name:''}) {
+    constructor(name=Math.random(),size = {width:15,height:15}) {
         this.width = size.width;
         this.heigth = size.height;
 
+        this.loadFlag = '';
         this.timer = '';
         this.id = name;
+        this.type = '';
         this.bgStyle = `position:relative;margin:0;padding:0; height:${this.heigth}px;width:${this.width}px;display:flex; justify-content:center;align-items:center;`
     }
+
     /**
-     * 
      * @param {string|DOM} parentNode //eg.'#id'
-     * @param {number} type  菊花/圆点
      */
-    start(parentNode, type = null) {
+    start(parentNode) {
         if (typeof parentNode == 'string') {
             parentNode = document.querySelector(parentNode);
         }
-        let load = this.creatChrysanthemumLoading(type);
-        parentNode.appendChild(load);
+        if (!parentNode){
+            throw new Error('need a parentNode');
+        }
 
+        if(!this.loadFlag){
+            this.chrysanthemumLoading();
+        }
+        parentNode.appendChild(this.loadFlag);
+
+        switch(this.type){
+            case 'circle':this.circle();break;
+            case 'landscapeBubble':this.landscapeBubble();break;
+            default: this.circle();break;
+        }
+       
+    }
+
+    // 
+    landscapeBubble(){
+        let items = document.querySelectorAll(`#${this.id} p`);
+
+        let i = 0;
+        this.timer = setInterval(()=>{
+            if(i==6){
+                items.forEach(function(item){
+                   
+                    item.style.background = '#fff';
+                });
+
+                i=0;
+            }
+
+            items[i].style = `height:5px;width:5px;border-radius:100%;margin-left:2px;transition:all 0.3s ease;transform-origin:center;background:rgba(0,0,0,0.8);`;
+            i++;
+        },200);
+        
+        console.log(items);
+    }
+    // 转圈
+    circle(){
         let angle = 0;
         this.timer = setInterval(() => {
             if (angle == 360) {
                 angle = 0;
             }
             angle += 30;
-            load.style = this.bgStyle + `transform:rotate(${angle}deg);`
+            this.loadFlag.style = this.bgStyle + `transform:rotate(${angle}deg);`
         }, 80);
     }
+
     /**
      * 停止loading ,移除dom
      */
@@ -41,10 +85,31 @@ class loading {
         }
         d = null;
     }
+    
+    landscapeBubbleLoading(){
+        this.type = loadingType.landscapeBubble;
+        let bg = document.createElement('div');
+        bg.id = this.id;
+        bg.style = `position:relative;margin:0;padding:0;display:flex;`;
+        let domF = document.createDocumentFragment();
+        for(let i = 0;i < 6 ;i++){
+            let item = document.createElement('p');
+            item.style = `width:5px;height:5px;border-radius:100%;margin-left:2px;background:#fff;`;
+            domF.appendChild(item);
+        }
+        bg.appendChild(domF);
+
+        this.loadFlag = bg;
+        return bg;
+    }
+
     /**
-     * 创建 菊花 loading
+     * 菊花 loading {number}:type 0-圆点 /1-菊花 defaul:null
      */
-    creatChrysanthemumLoading(type) {
+    chrysanthemumLoading(type = null) {
+
+        this.type = loadingType.circle;
+
         let bg = document.createElement('div');
         bg.id = this.id;
         bg.style = this.bgStyle;
@@ -65,7 +130,7 @@ class loading {
         }
         
         let radius = this.width / 2;
-
+        let frageM = document.createDocumentFragment();
         for (let i = 0; i < 12; i++) {
             let item = document.createElement('p');
             let angle = i * 30;
@@ -73,8 +138,12 @@ class loading {
 
             item.style = style + `background:rgba(0,0,0,${alpha});
                                 transform:rotate(${angle}deg) translateX(${radius}px);`;
-            bg.appendChild(item);
+            frageM.appendChild(item);
         }
+        bg.appendChild(frageM);
+        
+        this.loadFlag = bg;
+
         return bg;
     }
 
