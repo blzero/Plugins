@@ -1,7 +1,8 @@
 
 const loadingType = {
     circle:'circle',
-    landscapeBubble:'landscapeBubble'
+    landscapeBubble:'landscapeBubble',
+    length:2
 }
 class loading {
     constructor(name=Math.random(),size = {width:15,height:15}) {
@@ -39,7 +40,7 @@ class loading {
        
     }
 
-    // 
+    // action
     landscapeBubble(){
         let items = document.querySelectorAll(`#${this.id} p`);
 
@@ -60,7 +61,7 @@ class loading {
         
         console.log(items);
     }
-    // 转圈
+    // action 转圈
     circle(){
         let angle = 0;
         this.timer = setInterval(() => {
@@ -86,6 +87,7 @@ class loading {
         d = null;
     }
     
+    // 创建 dom
     landscapeBubbleLoading(){
         this.type = loadingType.landscapeBubble;
         let bg = document.createElement('div');
@@ -104,6 +106,7 @@ class loading {
     }
 
     /**
+     * 创建 dom
      * 菊花 loading {number}:type 0-圆点 /1-菊花 defaul:null
      */
     chrysanthemumLoading(type = null) {
@@ -115,7 +118,7 @@ class loading {
         bg.style = this.bgStyle;
 
         let style = 'position:absolute;margin:0;padding:0; ';
-        let r = this.getRandomIntInclusive(0, 1);
+        let r = this.getRandomIntInclusive(0, loadingType.length-1);
         if(type == 0){
             r = type;
         }

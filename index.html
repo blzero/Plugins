@@ -15,6 +15,7 @@
     </div>
 </body>
 <script src="./loading/loading.js"></script>
+<script src="./request/observer.js"></script>
 <script>
     let load = new loading('test222');
     load.start('body');
@@ -30,6 +31,10 @@
     load2.landscapeBubbleLoading();
     load2.start('body');
 
+    observer.register('test',function(data){
+        console.log(data);
+    });
+    observer.fire('test',{type:'test',});
 
 </script>
 </html>
