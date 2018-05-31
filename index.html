@@ -1,27 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .test-scroll {
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid #457;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: all 0.5s;
+            /* perspective: 500; */
+            /* transform-style: preserve-3d; */
+        }
+
+         img {
+            width: 500px;
+            margin: 0;
+        }
+       @keyframes tt{
+           0% {  opacity: 1;}
+           100% { opacity: 0;}
+       }
+        .animation{
+            transform-origin: 50% 0;
+            animation: tt 0.5s;
+        }
+        .up-list{
+            height: 292px;
+            width: 600px;
+            border: 1px solid #456;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .up-list li{}
         
+        .up-list img{}
     </style>
 </head>
+
 <body>
     <div class="content">
 
     </div>
+
+    <div class="test-scroll">
+        <img src="https://img.zcool.cn/community/019621562115706ac7254878d0585c.jpg@1280w_1l_2o_100sh.webp" alt="">
+        <img src="https://img.zcool.cn/community/01ca1c562115706ac7254878286f62.jpg@1280w_1l_2o_100sh.webp" alt="">
+        <img src="https://img.zcool.cn/community/01a4b1562115706ac72548786c54b6.jpg@1280w_1l_2o_100sh.webp" alt="">
+        <img src="https://img.zcool.cn/community/01fec65621157032f87557019ee54f.jpg@1280w_1l_2o_100sh.webp" alt="">
+        <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
+
+        <p>[Deprecation] Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.</p>
+    </div>
+
+
+    <ul class="up-list">
+        <li>
+            <img src="https://img.zcool.cn/community/019621562115706ac7254878d0585c.jpg@1280w_1l_2o_100sh.webp" alt="">
+           
+        </li>
+        <li>
+            <img src="https://img.zcool.cn/community/01ca1c562115706ac7254878286f62.jpg@1280w_1l_2o_100sh.webp" alt="">
+           
+        </li>
+        <li>
+            <img src="https://img.zcool.cn/community/01a4b1562115706ac72548786c54b6.jpg@1280w_1l_2o_100sh.webp" alt="">
+           
+        </li>
+        <li>
+            <img src="https://img.zcool.cn/community/01fec65621157032f87557019ee54f.jpg@1280w_1l_2o_100sh.webp" alt="">
+           
+        </li>
+        <li>
+            <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
+        </li>
+        <li>[Deprecation] Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.</li>
+    </ul>
+
+
 </body>
 <script src="./loading/loading.js"></script>
 <script src="./request/observer.js"></script>
+<script src="./scroll/index.js"></script>
 <script>
     let load = new loading('test222');
     load.start('body');
     // load.stop();
-
-
     let load1 = new loading('innerLoading');
     var content = document.querySelector('.content');
 
@@ -31,10 +105,24 @@
     load2.landscapeBubbleLoading();
     load2.start('body');
 
-    observer.register('test',function(data){
+    observer.register('test', function (data) {
         console.log(data);
     });
-    observer.fire('test',{type:'test',});
+    observer.fire('test', {
+        type: 'test',
+    });
+
+    var dom =document.querySelector('.test-scroll');
+
+   let one = zyMarquee(dom, {
+        speed: 30,
+        hoverStop: true,
+        // pageScroll: true,
+    }).scrollLeft();
+
+   let two = zyMarquee('.up-list').scrollUp();
+
 
 </script>
+
 </html>
