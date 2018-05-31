@@ -25,7 +25,7 @@
 
          img {
             width: 500px;
-            margin: 0;
+            margin: 0px;
         }
        @keyframes tt{
            0% {  opacity: 1;}
@@ -60,7 +60,7 @@
         <img src="https://img.zcool.cn/community/01fec65621157032f87557019ee54f.jpg@1280w_1l_2o_100sh.webp" alt="">
         <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
 
-        <p>[Deprecation] Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.</p>
+       
     </div>
 
 
@@ -84,7 +84,7 @@
         <li>
             <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
         </li>
-        <li>[Deprecation] Styling master document from stylesheets defined in HTML Imports is deprecated, and is planned to be removed in M67, around May 2018. Please refer to https://goo.gl/EGXzpw for possible migration paths.</li>
+       
     </ul>
 
 
@@ -115,12 +115,15 @@
     var dom =document.querySelector('.test-scroll');
 
    let one = zyMarquee(dom, {
-        speed: 30,
+        speed: 2000,
         hoverStop: true,
-        // pageScroll: true,
+        pageScroll: true,
     }).scrollLeft();
 
-   let two = zyMarquee('.up-list').scrollUp();
+   let two = zyMarquee('.up-list',{
+       speed:2000,
+        pageScroll: true,
+   }).scrollUp();
 
 
 </script>

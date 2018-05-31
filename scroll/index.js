@@ -77,6 +77,7 @@ yzMarquee.prototype.scrollLeft = function () {
     for (let i = 0; i < childsLength; i++) {
         let c = child[i];
         c.style.display = 'inline-block';
+        console.log(c.style);
     }
 
     if (childsLength == 1) {
@@ -101,18 +102,23 @@ yzMarquee.prototype.scrollLeft = function () {
             return;
         }
         let fC = dom.children[0];
+        let second = dom.children[1];
+        
         let fW = fC.offsetWidth;
 
         if (pageScroll) {
-            fC.classList.add('animation');
 
             var ss = animationLeft(fW);
             fC.style = ss;
+           
+            second.style = ss;
+
 
             pageTimer = setTimeout(function () {
-                var ss = animationLeft(0);
-                fC.style = ss;
 
+                fC.style = '';
+                second.style = ''
+                
                 dom.scrollLeft = fW;
                 fC.remove();
                 dom.appendChild(fC);
@@ -173,14 +179,19 @@ yzMarquee.prototype.scrollUp = function () {
     function scroll() {
         let fC = dom.children[0];
         let fH = fC.offsetHeight;
+        let second = dom.children[1];
+        let sH = second.offsetHeight;
         
      
         if (pageScroll) {
             var ss = animationUp(fH);
             fC.style = ss;
+            second.style = ss;
+
+
             pageTimer = setTimeout(function () {
-                ss = animationUp(0);
-                fC.style = ss;
+                fC.style = '';
+                second.style = '';
 
                 dom.scrollTop = fH;
                 fC.remove();
