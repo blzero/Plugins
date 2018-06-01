@@ -76,7 +76,7 @@ yzMarquee.prototype.scrollLeft = function () {
 
     for (let i = 0; i < childsLength; i++) {
         let c = child[i];
-        c.style.display = 'inline-block';
+        c.style.display = 'inline';
         console.log(c.style);
     }
 
@@ -108,7 +108,7 @@ yzMarquee.prototype.scrollLeft = function () {
 
         if (pageScroll) {
 
-            var ss = animationLeft(fW);
+            let ss = animationLeft(fW);
             fC.style = ss;
            
             second.style = ss;
@@ -128,14 +128,15 @@ yzMarquee.prototype.scrollLeft = function () {
             }, 500);
 
         } else {
+            dis++;
             // 滚动完 first
             if (dis >= fW) {
+                console.log(dis,fW);
                 fC.remove();
                 dom.appendChild(fC);
-                dis = 0;
+                dis = dis-fW;
             }
 
-            dis++;
             dom.scrollLeft = dis;
             timer = setTimeout(scroll, speed);
         }
@@ -184,7 +185,7 @@ yzMarquee.prototype.scrollUp = function () {
         
      
         if (pageScroll) {
-            var ss = animationUp(fH);
+            let ss = animationUp(fH);
             fC.style = ss;
             second.style = ss;
 
@@ -202,13 +203,14 @@ yzMarquee.prototype.scrollUp = function () {
             }, 500);
 
         } else {
+            dis++;
             // 滚动完 first
             if (dis >= fH) {
+                console.log(dis,fH);
                 fC.remove();
                 dom.appendChild(fC);
-                dis = 0;
+                dis = dis-fH;
             }
-            dis++;
             dom.scrollTop = dis;
             timer = setTimeout(scroll, speed);
         }

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,29 +21,40 @@
             /* perspective: 500; */
             /* transform-style: preserve-3d; */
         }
+        .inner-div{display: inline;}
 
-         img {
+        img {
             width: 500px;
             margin: 0px;
         }
-       @keyframes tt{
-           0% {  opacity: 1;}
-           100% { opacity: 0;}
-       }
-        .animation{
+
+        @keyframes tt {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .animation {
             transform-origin: 50% 0;
             animation: tt 0.5s;
         }
-        .up-list{
+
+        .up-list {
             height: 292px;
             width: 600px;
             border: 1px solid #456;
             overflow: hidden;
             margin: 0 auto;
         }
-        .up-list li{}
-        
-        .up-list img{}
+
+        .up-list li {
+        }
+
+        .up-list img {
+        }
     </style>
 </head>
 
@@ -54,37 +64,43 @@
     </div>
 
     <div class="test-scroll">
-        <img src="https://img.zcool.cn/community/019621562115706ac7254878d0585c.jpg@1280w_1l_2o_100sh.webp" alt="">
-        <img src="https://img.zcool.cn/community/01ca1c562115706ac7254878286f62.jpg@1280w_1l_2o_100sh.webp" alt="">
-        <img src="https://img.zcool.cn/community/01a4b1562115706ac72548786c54b6.jpg@1280w_1l_2o_100sh.webp" alt="">
-        <img src="https://img.zcool.cn/community/01fec65621157032f87557019ee54f.jpg@1280w_1l_2o_100sh.webp" alt="">
-        <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
 
-       
+        <div class="inner-div">
+            <img src="https://img.zcool.cn/community/019621562115706ac7254878d0585c.jpg@1280w_1l_2o_100sh.webp" alt="">
+            <img src="https://img.zcool.cn/community/01ca1c562115706ac7254878286f62.jpg@1280w_1l_2o_100sh.webp" alt="">
+            <img src="https://img.zcool.cn/community/01a4b1562115706ac72548786c54b6.jpg@1280w_1l_2o_100sh.webp" alt="">
+            <img src="https://img.zcool.cn/community/01fec65621157032f87557019ee54f.jpg@1280w_1l_2o_100sh.webp" alt="">
+            <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
+        </div>
+
+
+
     </div>
 
 
     <ul class="up-list">
         <li>
             <img src="https://img.zcool.cn/community/019621562115706ac7254878d0585c.jpg@1280w_1l_2o_100sh.webp" alt="">
-           
+
         </li>
+
         <li>
             <img src="https://img.zcool.cn/community/01ca1c562115706ac7254878286f62.jpg@1280w_1l_2o_100sh.webp" alt="">
-           
+
         </li>
+
         <li>
             <img src="https://img.zcool.cn/community/01a4b1562115706ac72548786c54b6.jpg@1280w_1l_2o_100sh.webp" alt="">
-           
+
         </li>
         <li>
             <img src="https://img.zcool.cn/community/01fec65621157032f87557019ee54f.jpg@1280w_1l_2o_100sh.webp" alt="">
-           
+
         </li>
         <li>
             <img src="https://img.zcool.cn/community/01b5ff5621157032f87557019c89de.jpg@1280w_1l_2o_100sh.webp" alt="">
         </li>
-       
+
     </ul>
 
 
@@ -112,20 +128,18 @@
         type: 'test',
     });
 
-    var dom =document.querySelector('.test-scroll');
+    var dom = document.querySelector('.test-scroll');
 
-   let one = zyMarquee(dom, {
-        speed: 2000,
+    let one = zyMarquee(dom, {
+        speed: 10,
         hoverStop: true,
-        pageScroll: true,
+        // pageScroll: true,
     }).scrollLeft();
 
-   let two = zyMarquee('.up-list',{
-       speed:2000,
-        pageScroll: true,
-   }).scrollUp();
-
-
+    let two = zyMarquee('.up-list', {
+        speed: 10,
+        // pageScroll: true,
+    }).scrollUp();
 </script>
 
 </html>
