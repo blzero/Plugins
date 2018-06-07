@@ -55,6 +55,18 @@
 
         .up-list img {
         }
+        .scroll-text{
+            width: 200px;
+            height: 100px;
+            border: 1px solid #f87;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .scroll-text p{
+            padding: 10px;
+            border: 1px solid #73a2d0;
+        }
     </style>
 </head>
 
@@ -103,6 +115,10 @@
 
     </ul>
 
+    <div class="scroll-text">
+        <p>n***9刚刚兑换了6贷币 </p>
+    </div>
+
 
 </body>
 <script src="./loading/loading.js"></script>
@@ -140,6 +156,12 @@
         speed: 10,
         // pageScroll: true,
     }).scrollUp();
+
+     zyMarquee('.scroll-text', {
+        speed: 20,
+        // hoverStop: true,
+        // pageScroll: true,
+    }).scrollUp().scrollUp().scrollUp();
 </script>
 
 </html>

@@ -77,7 +77,6 @@ yzMarquee.prototype.scrollLeft = function () {
     for (let i = 0; i < childsLength; i++) {
         let c = child[i];
         c.style.display = 'inline';
-        console.log(c.style);
     }
 
     if (childsLength == 1) {
@@ -85,6 +84,18 @@ yzMarquee.prototype.scrollLeft = function () {
         clone.innerHTML = child[0].innerHTML;
         dom.appendChild(clone);
     }
+    // 解决内容未溢出 不能滚动
+    let n = 0;
+    var ofw = dom.offsetWidth;
+    var scw = dom.scrollWidth;
+    while(scw < 2*ofw){
+        let clone = child[n].cloneNode();
+        clone.innerHTML = child[0].innerHTML;
+        dom.appendChild(clone);
+        n++;
+        scw = dom.scrollWidth;
+    }
+
     if (hoverStop) {
         addStopEvent(dom,function hover(){
             canScroll = false;
@@ -110,9 +121,7 @@ yzMarquee.prototype.scrollLeft = function () {
 
             let ss = animationLeft(fW);
             fC.style = ss;
-           
             second.style = ss;
-
 
             pageTimer = setTimeout(function () {
 
@@ -131,7 +140,6 @@ yzMarquee.prototype.scrollLeft = function () {
             dis++;
             // 滚动完 first
             if (dis >= fW) {
-                console.log(dis,fW);
                 fC.remove();
                 dom.appendChild(fC);
                 dis = dis-fW;
@@ -166,6 +174,17 @@ yzMarquee.prototype.scrollUp = function () {
         dom.appendChild(clone);
     }
 
+    var ofh = dom.offsetHeight;
+    var sch = dom.scrollHeight;
+    
+    var n =0;
+    while(sch < ofh*2){
+        let clone = child[n].cloneNode();
+        clone.innerHTML = child[0].innerHTML;
+        dom.appendChild(clone);
+        sch = dom.scrollHeight;
+        n++;
+    }
     if (hoverStop) {
         addStopEvent(dom,function hover(){
             canScroll = false;
@@ -189,7 +208,6 @@ yzMarquee.prototype.scrollUp = function () {
             fC.style = ss;
             second.style = ss;
 
-
             pageTimer = setTimeout(function () {
                 fC.style = '';
                 second.style = '';
@@ -206,7 +224,6 @@ yzMarquee.prototype.scrollUp = function () {
             dis++;
             // 滚动完 first
             if (dis >= fH) {
-                console.log(dis,fH);
                 fC.remove();
                 dom.appendChild(fC);
                 dis = dis-fH;
